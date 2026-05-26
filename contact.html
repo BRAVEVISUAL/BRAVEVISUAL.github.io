@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact | 윤정훈</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="pages.css" />
+    <link rel="stylesheet" href="contact.css" />
+  </head>
+
+  <body>
+    <nav class="site-nav">
+      <a class="brand" href="index.html">YJH</a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="experience.html">Experience</a>
+        <a href="lab.html">Lab</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </nav>
+
+    <main class="page">
+      <section class="container contact-layout">
+        <div>
+          <p class="eyebrow">Contact</p>
+          <h2>연락처</h2>
+          <p class="page-desc">
+            홈페이지 피드백, 수업 과제 확인, 포트폴리오 관련 연락을 받을 수 있는
+            공간입니다.
+          </p>
+        </div>
+
+        <div class="card contact-card">
+          <p>
+            <strong>Email</strong>
+            <a href="mailto:hun10626@kw.ac.kr">hun10626@kw.ac.kr</a>
+          </p>
+          <p>
+            <strong>GitHub</strong>
+            <a href="https://github.com/bravevisual" target="_blank"
+              >github.com/bravevisual</a
+            >
+          </p>
+        </div>
+
+        <form class="contact-form" onsubmit="showMessage(event)">
+          <label>
+            이름
+            <input
+              id="senderName"
+              type="text"
+              placeholder="이름을 입력하세요"
+            />
+          </label>
+          <label>
+            메시지
+            <textarea
+              id="senderMessage"
+              placeholder="메시지를 입력하세요"
+            ></textarea>
+          </label>
+          <button class="btn primary" type="submit">메시지 확인</button>
+          <p id="formResult" class="result-text"></p>
+        </form>
+      </section>
+    </main>
+
+    <footer>© <span id="year"></span> 윤정훈</footer>
+    <script src="script.js"></script>
+  </body>
+</html>

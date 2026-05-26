@@ -3,17 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>윤정훈 | 인터넷활용 홈페이지</title>
+    <title>윤정훈 | Journey of Information Convergence</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="home.css" />
   </head>
 
-  <body>
+  <body class="journey-page">
     <nav class="site-nav">
-      <a class="brand" href="index.html">YJH</a>
+        <a class="brand" href="index.html">YJH</a>
       <div class="nav-links">
         <a href="index.html">Home</a>
-        <a href="about.html">About</a>
         <a href="portfolio.html">Portfolio</a>
         <a href="experience.html">Experience</a>
         <a href="lab.html">Lab</a>
@@ -22,77 +21,201 @@
     </nav>
 
     <main>
-      <section class="hero">
-        <div class="hero-copy">
-          <p class="eyebrow">Internet Utilization Portfolio</p>
-          <h2>인터넷활용 실습 홈페이지</h2>
-          <p id="intro" class="hero-text">
-            훌륭한 개발자가 되고 싶은 마음으로 HTML, CSS, JavaScript를 배우며
-            만든 실습과 기록을 한곳에 모은 개인 홈페이지입니다.
-          </p>
-          <div class="hero-actions">
-            <a class="btn primary" href="portfolio.html">작업 보기</a>
-            <button class="btn ghost" type="button" onclick="changeIntro()">
-              소개 바꾸기
-            </button>
-          </div>
-        </div>
-
-        <div class="hero-panel" aria-label="홈페이지 핵심 정보">
-          <div class="profile-mark">YJH</div>
-          <dl>
-            <div>
-              <dt>이름</dt>
-              <dd>윤정훈</dd>
-            </div>
-            <div>
-              <dt>소속</dt>
-              <dd>광운대학교 정보융합학부</dd>
-            </div>
-            <div>
-              <dt>키워드</dt>
-              <dd>웹 제작, JavaScript, 서버 학습</dd>
-            </div>
-          </dl>
+      <section class="journey-hero" aria-labelledby="journey-title">
+        <p class="journey-kicker">Journey of Information Convergence</p>
+        <h1 id="journey-title">윤정훈</h1>
+        <p class="journey-major">Department of Information Convergence</p>
+        <p class="journey-line">Connecting Data, Technology and People</p>
+        <div class="scroll-cue" aria-hidden="true">
+          <span></span>
         </div>
       </section>
 
-      <section class="section-band">
-        <div class="container">
-          <p class="eyebrow">What is inside</p>
-          <h2>수업 예제를 나의 결과물로 확장하기</h2>
-          <div class="feature-grid">
-            <article class="card">
-              <span class="card-number">01</span>
-              <h3>기본 페이지 구성</h3>
-              <p>
-                Home, About, Portfolio, Contact 구조를 개인 소개에 맞게
-                정리했습니다.
-              </p>
-            </article>
-            <article class="card">
-              <span class="card-number">02</span>
-              <h3>JavaScript 실습</h3>
-              <p>
-                랜덤 뽑기와 D-Day 계산기를 별도 Lab 페이지에서 직접 실행할 수
-                있습니다.
-              </p>
-            </article>
-            <article class="card">
-              <span class="card-number">03</span>
-              <h3>서버 구동 학습</h3>
-              <p>
-                웹페이지 제작을 넘어 백엔드 서버가 어떻게 동작하는지도 스스로
-                공부하고 싶습니다.
-              </p>
-            </article>
-          </div>
+      <section class="journey" aria-label="성장 과정 타임라인">
+        <div class="journey-track" aria-hidden="true">
+          <div class="journey-progress"></div>
         </div>
+
+        <ol class="journey-list">
+          <li class="journey-step profile-moment">
+            <span class="journey-node"></span>
+            <div class="journey-copy">
+              <p class="journey-year">Profile</p>
+              <h2>정보와 사람 사이를 연결하는 학생</h2>
+              <p>
+                광운대학교 정보융합학부에서 데이터, 소프트웨어, 사용자 경험을
+                함께 배우고 있습니다. 기능을 만드는 데서 멈추지 않고, 그 기능이
+                사람에게 어떤 흐름으로 전달되는지까지 설계하는 개발자로
+                성장하고 있습니다.
+              </p>
+              <ul class="skill-river" aria-label="핵심 관심 분야">
+                <li>Software</li>
+                <li>Data</li>
+                <li>AI</li>
+                <li>UI/UX</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="journey-step">
+            <span class="journey-node"></span>
+            <div class="journey-copy">
+              <p class="journey-year">2021</p>
+              <h2>정보융합학부에서 여정을 시작하다</h2>
+              <p>
+                데이터, 개발, 인공지능처럼 서로 다른 분야가 하나의 문제를
+                해결하기 위해 연결되는 방식을 처음 배웠습니다. 이 시기는
+                기술을 따로 익히기보다, 지식 사이의 관계를 보는 시야를 넓힌
+                출발점이었습니다.
+              </p>
+              <ul class="skill-river" aria-label="2021년에 형성한 역량">
+                <li>Information Convergence</li>
+                <li>Problem Framing</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="journey-step">
+            <span class="journey-node"></span>
+            <div class="journey-copy">
+              <p class="journey-year">2022</p>
+              <h2>코드와 데이터의 언어를 익히다</h2>
+              <p>
+                Java와 Python을 통해 프로그램의 구조를 이해하고, 데이터 처리와
+                분석의 기초를 다졌습니다. 단순히 문법을 외우는 단계에서 벗어나
+                데이터를 읽고 정리하며 의미를 찾아내는 감각을 키웠습니다.
+              </p>
+              <ul class="skill-river" aria-label="2022년에 학습한 기술">
+                <li>Java</li>
+                <li>Python</li>
+                <li>Data Analysis</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="journey-step project-moment">
+            <span class="journey-node"></span>
+            <div class="journey-copy">
+              <p class="journey-year">2023</p>
+              <h2>첫 개발 프로젝트로 아이디어를 구현하다</h2>
+              <p>
+                머릿속 아이디어를 실제 화면과 기능으로 옮기며 개발 프로세스를
+                경험했습니다. 요구사항을 작게 쪼개고, 구현하고, 다시 다듬는
+                과정을 통해 결과물은 생각보다 많은 선택의 합이라는 것을
+                배웠습니다.
+              </p>
+              <dl class="experience-record">
+                <div>
+                  <dt>Project</dt>
+                  <dd>개인 웹페이지 구조 설계와 인터랙션 구현</dd>
+                </div>
+                <div>
+                  <dt>Stack</dt>
+                  <dd>HTML, CSS, JavaScript, Git</dd>
+                </div>
+                <div>
+                  <dt>Lesson</dt>
+                  <dd>작동하는 기능과 읽히는 경험은 함께 설계되어야 한다.</dd>
+                </div>
+              </dl>
+              <ul class="skill-river" aria-label="2023년에 활용한 기술">
+                <li>Git</li>
+                <li>Web</li>
+                <li>UI Flow</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="journey-step">
+            <span class="journey-node"></span>
+            <div class="journey-copy">
+              <p class="journey-year">2024</p>
+              <h2>팀 안에서 사용자 경험을 중심에 두다</h2>
+              <p>
+                팀 프로젝트를 거치며 좋은 개발은 혼자 완성하는 기술이 아니라
+                함께 문제를 정의하고 조율하는 과정이라는 것을 배웠습니다.
+                사용자가 어떤 흐름으로 서비스를 만나는지 관찰하며 UI/UX와
+                협업 역량을 함께 키웠습니다.
+              </p>
+              <ul class="skill-river" aria-label="2024년에 강화한 역량">
+                <li>UI/UX</li>
+                <li>Collaboration</li>
+                <li>Problem Solving</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="journey-step project-moment">
+            <span class="journey-node"></span>
+            <div class="journey-copy">
+              <p class="journey-year">2025</p>
+              <h2>AI와 데이터로 실제 문제에 접근하다</h2>
+              <p>
+                AI와 데이터 기반 프로젝트를 통해 문제를 해석하고, 필요한 정보를
+                선별하고, 서비스 형태로 연결하는 경험을 쌓았습니다. 기술의
+                목적은 새로움 자체가 아니라 사람에게 닿는 가치라는 기준이 더
+                분명해졌습니다.
+              </p>
+              <dl class="experience-record">
+                <div>
+                  <dt>Project</dt>
+                  <dd>데이터 기반 서비스 기획과 AI 활용 실험</dd>
+                </div>
+                <div>
+                  <dt>Stack</dt>
+                  <dd>AI, Python, Data Analysis, Service Planning</dd>
+                </div>
+                <div>
+                  <dt>Lesson</dt>
+                  <dd>문제의 맥락을 이해할수록 기술 선택도 선명해진다.</dd>
+                </div>
+              </dl>
+              <ul class="skill-river" aria-label="2025년에 확장한 기술">
+                <li>AI</li>
+                <li>Python</li>
+                <li>Service Design</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="journey-step">
+            <span class="journey-node"></span>
+            <div class="journey-copy">
+              <p class="journey-year">Now</p>
+              <h2>정보와 기술을 사람에게 연결하는 중</h2>
+              <p>
+                현재는 Android와 Kotlin을 포함한 소프트웨어 개발 역량을
+                넓히며, 데이터와 사용자 경험을 함께 고려하는 개발자로 성장하고
+                있습니다. 작은 기능을 만들더라도 사용자의 맥락과 흐름을 먼저
+                생각하려고 합니다.
+              </p>
+              <ul class="skill-river" aria-label="현재 확장 중인 기술">
+                <li>Android</li>
+                <li>Kotlin</li>
+                <li>Human-centered Tech</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="journey-step future-step">
+            <span class="journey-node"></span>
+            <div class="journey-copy">
+              <p class="journey-year">Future</p>
+              <h2>융합으로 사회적 가치를 만드는 개발자</h2>
+              <p>
+                앞으로는 데이터, AI, 소프트웨어를 연결해 실제 사회 문제를
+                해결하는 서비스를 만들고 싶습니다. 기술을 잘 다루는 사람을
+                넘어, 문제와 사람 사이를 정확히 잇는 개발자가 되는 것이 이
+                여정의 다음 목적지입니다.
+              </p>
+            </div>
+          </li>
+        </ol>
       </section>
     </main>
 
     <footer>
-      © <span id="year"></span> 윤정훈. Internet Utilization Portfolio.
+      © <span id="year"></span> 윤정훈. Journey of Information Convergence.
     </footer>
     <script src="script.js"></script>
   </body>

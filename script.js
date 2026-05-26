@@ -48,7 +48,45 @@ document.addEventListener("DOMContentLoaded", function () {
   if (messageList) {
     messageList.addEventListener("click", deleteMessage);
   }
+
+  initializeJourneyScroll();
 });
+
+function initializeJourneyScroll() {
+  const journey = document.querySelector(".journey, .story-page");
+  const steps = document.querySelectorAll(".journey-step, .story-step");
+  const progress = document.querySelector(".journey-progress, .story-progress");
+  if (!journey || steps.length === 0) return;
+
+  const updateProgress = () => {
+    if (!progress) return;
+
+    const rect = journey.getBoundingClientRect();
+    const viewportPoint = window.innerHeight * 0.58;
+    const total = rect.height - window.innerHeight * 0.2;
+    const drawn = Math.min(Math.max(viewportPoint - rect.top, 0), total);
+    progress.style.height = `${(drawn / total) * 100}%`;
+  };
+
+  const activateSteps = () => {
+    const activeLine = window.innerHeight * 0.58;
+
+    steps.forEach((step) => {
+      const rect = step.getBoundingClientRect();
+      const reached = rect.top < activeLine;
+      const current = rect.top < activeLine && rect.bottom > activeLine * 0.55;
+
+      step.classList.toggle("is-past", reached);
+      step.classList.toggle("is-visible", current);
+    });
+
+    updateProgress();
+  };
+
+  activateSteps();
+  window.addEventListener("scroll", activateSteps, { passive: true });
+  window.addEventListener("resize", activateSteps);
+}
 
 function changeIntro() {
   const text = document.getElementById("intro");

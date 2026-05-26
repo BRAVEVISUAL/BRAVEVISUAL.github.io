@@ -14,7 +14,6 @@
       <a class="brand" href="index.html">YJH</a>
       <div class="nav-links">
         <a href="index.html">Home</a>
-        <a href="about.html">About</a>
         <a href="portfolio.html">Portfolio</a>
         <a href="experience.html">Experience</a>
         <a href="lab.html">Lab</a>
@@ -22,67 +21,128 @@
       </div>
     </nav>
 
-    <main class="page">
-      <section class="container">
+    <main class="story-page lab-story">
+      <header class="story-intro wide-intro">
         <p class="eyebrow">JavaScript Lab</p>
-        <h2>수업 예제 기능 실행하기</h2>
-        <p class="page-desc">
-          prompt와 document.write 대신 입력창과 결과 영역을 사용해 더 보기 좋은
-          실습 도구로 바꿨습니다.
+        <h1>작은 기능을 관찰하고 검증하는 웹 실험 노트입니다.</h1>
+        <p>
+          JavaScript 예제를 하나의 연구 기록처럼 정리했습니다. 각 실험은
+          목적, 입력, 실행, 관찰 결과의 흐름으로 이어집니다.
         </p>
+      </header>
 
-        <div class="tool-grid">
-          <article class="tool-card">
+      <div class="story-track" aria-hidden="true">
+        <div class="story-progress"></div>
+      </div>
+
+      <ol class="story-list lab-list" aria-label="JavaScript 실험 흐름">
+        <li class="story-step lab-step">
+          <span class="story-node"></span>
+          <div class="story-copy lab-copy">
+            <p class="story-label">Experiment 01</p>
             <h2>랜덤 뽑기</h2>
-            <p>콤마로 구분된 항목 중 하나를 무작위로 선택합니다.</p>
-            <label for="randomItems">항목 목록</label>
-            <textarea id="randomItems">
-과제하기, 복습하기, 산책하기, 커피 마시기, 포트폴리오 다듬기</textarea
-            >
-            <button id="randomPickBtn" class="btn primary" type="button">
-              뽑기
-            </button>
-            <div id="randomResult" class="result-box">
-              결과가 여기에 표시됩니다.
-            </div>
-          </article>
-
-          <article class="tool-card">
-            <h2>D-Day 계산기</h2>
-            <p>목표 날짜까지 남은 일수를 계산합니다.</p>
-            <label for="targetDate">목표 날짜</label>
-            <input id="targetDate" type="date" />
-            <button id="ddayCalculateBtn" class="btn primary" type="button">
-              계산하기
-            </button>
-            <div id="ddayResult" class="result-box">
-              목표 날짜를 선택해 주세요.
-            </div>
-          </article>
-
-          <article class="tool-card">
-            <h2>DOM 스타일 제어</h2>
-            <p>버튼을 눌러 문장의 색상, 크기, 배경, 표시 상태를 바꿉니다.</p>
-            <p id="styleTarget" class="style-target">
-              이 문장의 스타일을 바꿔보세요!
+            <p>
+              배열로 분리된 입력값에서 무작위 인덱스를 선택하는 과정을
+              관찰합니다.
             </p>
-            <div class="button-row">
-              <button id="changeColorBtn" class="btn ghost" type="button">
-                글자색 변경
+            <dl class="lab-meta">
+              <div>
+                <dt>Hypothesis</dt>
+                <dd>입력값을 배열로 변환하면 임의 선택 결과를 만들 수 있다.</dd>
+              </div>
+              <div>
+                <dt>Method</dt>
+                <dd>String split, trim, filter, Math.random 사용</dd>
+              </div>
+            </dl>
+            <div class="lab-control">
+              <label for="randomItems">항목 목록</label>
+              <textarea id="randomItems">
+과제하기, 복습하기, 산책하기, 커피 마시기, 포트폴리오 다듬기</textarea
+              >
+              <button id="randomPickBtn" class="btn primary" type="button">
+                뽑기
               </button>
-              <button id="changeSizeBtn" class="btn ghost" type="button">
-                크게 보기
-              </button>
-              <button id="changeBackgroundBtn" class="btn ghost" type="button">
-                배경 강조
-              </button>
-              <button id="toggleVisibilityBtn" class="btn ghost" type="button">
-                숨기기/보이기
-              </button>
+              <div id="randomResult" class="result-box">
+                결과가 여기에 표시됩니다.
+              </div>
             </div>
-          </article>
-        </div>
-      </section>
+          </div>
+        </li>
+
+        <li class="story-step lab-step">
+          <span class="story-node"></span>
+          <div class="story-copy lab-copy">
+            <p class="story-label">Experiment 02</p>
+            <h2>D-Day 계산기</h2>
+            <p>
+              현재 날짜와 목표 날짜의 차이를 계산해 시간 데이터를 화면에
+              해석 가능한 정보로 바꿉니다.
+            </p>
+            <dl class="lab-meta">
+              <div>
+                <dt>Hypothesis</dt>
+                <dd>두 날짜의 시간 차이를 일 단위로 변환할 수 있다.</dd>
+              </div>
+              <div>
+                <dt>Method</dt>
+                <dd>Date 객체, millisecond 차이, Math.ceil 사용</dd>
+              </div>
+            </dl>
+            <div class="lab-control">
+              <label for="targetDate">목표 날짜</label>
+              <input id="targetDate" type="date" />
+              <button id="ddayCalculateBtn" class="btn primary" type="button">
+                계산하기
+              </button>
+              <div id="ddayResult" class="result-box">
+                목표 날짜를 선택해 주세요.
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="story-step lab-step">
+          <span class="story-node"></span>
+          <div class="story-copy lab-copy">
+            <p class="story-label">Experiment 03</p>
+            <h2>DOM 스타일 제어</h2>
+            <p>
+              사용자의 클릭이 DOM 요소의 시각 상태를 어떻게 변화시키는지
+              관찰합니다.
+            </p>
+            <dl class="lab-meta">
+              <div>
+                <dt>Hypothesis</dt>
+                <dd>이벤트 리스너를 통해 화면 요소의 스타일을 직접 변경할 수 있다.</dd>
+              </div>
+              <div>
+                <dt>Method</dt>
+                <dd>click event, style property, display toggle 사용</dd>
+              </div>
+            </dl>
+            <div class="lab-control">
+              <p id="styleTarget" class="style-target">
+                이 문장의 스타일을 바꿔보세요!
+              </p>
+              <div class="button-row">
+                <button id="changeColorBtn" class="btn ghost" type="button">
+                  글자색 변경
+                </button>
+                <button id="changeSizeBtn" class="btn ghost" type="button">
+                  크게 보기
+                </button>
+                <button id="changeBackgroundBtn" class="btn ghost" type="button">
+                  배경 강조
+                </button>
+                <button id="toggleVisibilityBtn" class="btn ghost" type="button">
+                  숨기기/보이기
+                </button>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ol>
     </main>
 
     <footer>© <span id="year"></span> 윤정훈</footer>

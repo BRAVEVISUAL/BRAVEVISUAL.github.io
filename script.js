@@ -8,6 +8,46 @@ document.addEventListener("DOMContentLoaded", function () {
   if (targetDate) {
     targetDate.value = "2026-06-20";
   }
+
+  const randomPickBtn = document.getElementById("randomPickBtn");
+  if (randomPickBtn) {
+    randomPickBtn.addEventListener("click", pickRandomItem);
+  }
+
+  const ddayCalculateBtn = document.getElementById("ddayCalculateBtn");
+  if (ddayCalculateBtn) {
+    ddayCalculateBtn.addEventListener("click", calculateDday);
+  }
+
+  const changeColorBtn = document.getElementById("changeColorBtn");
+  if (changeColorBtn) {
+    changeColorBtn.addEventListener("click", changeStyleTargetColor);
+  }
+
+  const changeSizeBtn = document.getElementById("changeSizeBtn");
+  if (changeSizeBtn) {
+    changeSizeBtn.addEventListener("click", changeStyleTargetSize);
+  }
+
+  const changeBackgroundBtn = document.getElementById("changeBackgroundBtn");
+  if (changeBackgroundBtn) {
+    changeBackgroundBtn.addEventListener("click", changeStyleTargetBackground);
+  }
+
+  const toggleVisibilityBtn = document.getElementById("toggleVisibilityBtn");
+  if (toggleVisibilityBtn) {
+    toggleVisibilityBtn.addEventListener("click", toggleStyleTargetVisibility);
+  }
+
+  const contactForm = document.getElementById("contactForm");
+  if (contactForm) {
+    contactForm.addEventListener("submit", showMessage);
+  }
+
+  const messageList = document.getElementById("messageList");
+  if (messageList) {
+    messageList.addEventListener("click", deleteMessage);
+  }
 });
 
 function changeIntro() {
@@ -67,18 +107,70 @@ function calculateDday() {
   }
 }
 
+function changeStyleTargetColor() {
+  const target = document.getElementById("styleTarget");
+  if (!target) return;
+
+  target.style.color = "#c2410c";
+}
+
+function changeStyleTargetSize() {
+  const target = document.getElementById("styleTarget");
+  if (!target) return;
+
+  target.style.fontSize = "32px";
+}
+
+function changeStyleTargetBackground() {
+  const target = document.getElementById("styleTarget");
+  if (!target) return;
+
+  target.style.backgroundColor = "#fff3a3";
+}
+
+function toggleStyleTargetVisibility() {
+  const target = document.getElementById("styleTarget");
+  if (!target) return;
+
+  target.style.display = target.style.display === "none" ? "block" : "none";
+}
+
+function deleteMessage(event) {
+  const item = event.target.closest("li");
+  const list = document.getElementById("messageList");
+  if (!item || !list || !list.contains(item)) return;
+
+  list.removeChild(item);
+}
+
 function showMessage(event) {
   event.preventDefault();
 
   const name = document.getElementById("senderName");
   const message = document.getElementById("senderMessage");
   const result = document.getElementById("formResult");
-  if (!name || !message || !result) return;
+  const list = document.getElementById("messageList");
+  if (!name || !message || !result || !list) return;
 
   const sender = name.value.trim() || "방문자";
   const body = message.value.trim();
 
-  result.textContent = body
-    ? `${sender}님의 메시지를 확인했습니다: ${body}`
-    : `${sender}님, 메시지를 입력하면 이곳에서 바로 확인할 수 있습니다.`;
+  if (!body) {
+    result.textContent = `${sender}님, 메시지를 입력하면 댓글 목록에 추가됩니다.`;
+    message.focus();
+    return;
+  }
+
+  const item = document.createElement("li");
+  const senderName = document.createElement("strong");
+  const messageText = document.createElement("span");
+
+  senderName.textContent = sender;
+  messageText.textContent = body;
+  item.append(senderName, messageText);
+  list.appendChild(item);
+
+  result.textContent = `${sender}님의 댓글이 추가되었습니다. 목록을 클릭하면 삭제할 수 있습니다.`;
+  message.value = "";
+  message.focus();
 }

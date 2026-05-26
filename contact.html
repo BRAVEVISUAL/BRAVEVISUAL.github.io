@@ -46,7 +46,7 @@
           </p>
         </div>
 
-        <form class="contact-form" onsubmit="showMessage(event)">
+        <form id="contactForm" class="contact-form">
           <label>
             이름
             <input
@@ -62,8 +62,16 @@
               placeholder="메시지를 입력하세요"
             ></textarea>
           </label>
-          <button class="btn primary" type="submit">메시지 확인</button>
-          <p id="formResult" class="result-text"></p>
+          <button class="btn primary" type="submit">댓글 추가하기</button>
+          <p id="formResult" class="result-text">
+            이름과 메시지를 입력하면 아래 댓글 목록에 추가됩니다.
+          </p>
+          <ul id="messageList" class="message-list">
+            <li>
+              <strong>방문자</strong>
+              홈페이지 잘 보고 갑니다.
+            </li>
+          </ul>
         </form>
       </section>
     </main>

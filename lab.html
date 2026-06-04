@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lab | 윤정훈</title>
+    <title>Arcade | 윤정훈</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="pages.css" />
     <link rel="stylesheet" href="lab.css" />
@@ -16,18 +16,18 @@
         <a href="index.html">Home</a>
         <a href="portfolio.html">Portfolio</a>
         <a href="experience.html">Experience</a>
-        <a href="lab.html">Lab</a>
+        <a href="lab.html">Arcade</a>
         <a href="contact.html">Contact</a>
       </div>
     </nav>
 
     <main class="story-page lab-story">
       <header class="story-intro wide-intro">
-        <p class="eyebrow">JavaScript Lab</p>
-        <h1>작은 기능을 관찰하고 검증하는 웹 실험 노트입니다.</h1>
+        <p class="eyebrow">JavaScript Arcade</p>
+        <h1>HTML, CSS, JavaScript 미션을 플레이하는 작은 오락실입니다.</h1>
         <p>
-          JavaScript 예제를 하나의 연구 기록처럼 정리했습니다. 각 실험은
-          목적, 입력, 실행, 관찰 결과의 흐름으로 이어집니다.
+          수업 예제를 버튼, 점수판, 타이머가 있는 미니게임처럼 바꾸었습니다.
+          간단한 코드를 직접 조작하며 결과를 바로 확인할 수 있습니다.
         </p>
       </header>
 
@@ -35,36 +35,40 @@
         <div class="story-progress"></div>
       </div>
 
-      <ol class="story-list lab-list" aria-label="JavaScript 실험 흐름">
+      <ol class="story-list lab-list" aria-label="JavaScript arcade stages">
         <li class="story-step lab-step">
           <span class="story-node"></span>
           <div class="story-copy lab-copy">
-            <p class="story-label">Experiment 01</p>
-            <h2>랜덤 뽑기</h2>
+            <p class="story-label">Stage 01</p>
+            <h2>랜덤 퀴즈 머신</h2>
             <p>
-              배열로 분리된 입력값에서 무작위 인덱스를 선택하는 과정을
-              관찰합니다.
+              HTML, CSS, JavaScript 중 하나를 랜덤으로 뽑고, 선택된 주제의
+              퀴즈를 풀어 점수를 올립니다.
             </p>
             <dl class="lab-meta">
               <div>
-                <dt>Hypothesis</dt>
-                <dd>입력값을 배열로 변환하면 임의 선택 결과를 만들 수 있다.</dd>
+                <dt>Rule</dt>
+                <dd>주제와 문제가 무작위로 등장하고, 정답 선택 시 점수가 올라갑니다.</dd>
               </div>
               <div>
-                <dt>Method</dt>
-                <dd>String split, trim, filter, Math.random 사용</dd>
+                <dt>Code</dt>
+                <dd>Array, Math.random, event listener, DOM update 사용</dd>
               </div>
             </dl>
-            <div class="lab-control">
-              <label for="randomItems">항목 목록</label>
-              <textarea id="randomItems">
-과제하기, 복습하기, 산책하기, 커피 마시기, 포트폴리오 다듬기</textarea
-              >
+            <div class="lab-control quiz-machine">
+              <div class="quiz-scoreboard" aria-live="polite">
+                <span id="quizTopic">TOPIC READY</span>
+                <span id="quizScore">SCORE 0 / 0</span>
+              </div>
               <button id="randomPickBtn" class="btn primary" type="button">
-                뽑기
+                퀴즈 주제 뽑기
               </button>
+              <div class="quiz-card">
+                <strong id="quizQuestion">버튼을 눌러 퀴즈를 시작하세요.</strong>
+                <div id="quizOptions" class="quiz-options"></div>
+              </div>
               <div id="randomResult" class="result-box">
-                결과가 여기에 표시됩니다.
+                HTML, CSS, JavaScript 중 하나가 랜덤으로 출제됩니다.
               </div>
             </div>
           </div>
@@ -73,19 +77,19 @@
         <li class="story-step lab-step">
           <span class="story-node"></span>
           <div class="story-copy lab-copy">
-            <p class="story-label">Experiment 02</p>
-            <h2>D-Day 계산기</h2>
+            <p class="story-label">Stage 02</p>
+            <h2>D-Day 타이머</h2>
             <p>
-              현재 날짜와 목표 날짜의 차이를 계산해 시간 데이터를 화면에
-              해석 가능한 정보로 바꿉니다.
+              목표 날짜를 입력하면 남은 시간을 계산해 다음 스테이지까지의
+              카운트다운처럼 보여줍니다.
             </p>
             <dl class="lab-meta">
               <div>
-                <dt>Hypothesis</dt>
+                <dt>Rule</dt>
                 <dd>두 날짜의 시간 차이를 일 단위로 변환할 수 있다.</dd>
               </div>
               <div>
-                <dt>Method</dt>
+                <dt>Code</dt>
                 <dd>Date 객체, millisecond 차이, Math.ceil 사용</dd>
               </div>
             </dl>
@@ -105,26 +109,46 @@
         <li class="story-step lab-step">
           <span class="story-node"></span>
           <div class="story-copy lab-copy">
-            <p class="story-label">Experiment 03</p>
-            <h2>DOM 스타일 제어</h2>
+            <p class="story-label">Stage 03</p>
+            <h2>DOM 스타일 매칭 배틀</h2>
             <p>
-              사용자의 클릭이 DOM 요소의 시각 상태를 어떻게 변화시키는지
-              관찰합니다.
+              오른쪽 정답 화면을 보고 왼쪽 화면을 같은 모양으로 맞춥니다.
+              맞으면 PERFECT, 빗나가면 MISS가 표시됩니다.
             </p>
             <dl class="lab-meta">
               <div>
-                <dt>Hypothesis</dt>
+                <dt>Rule</dt>
                 <dd>이벤트 리스너를 통해 화면 요소의 스타일을 직접 변경할 수 있다.</dd>
               </div>
               <div>
-                <dt>Method</dt>
+                <dt>Code</dt>
                 <dd>click event, style property, display toggle 사용</dd>
               </div>
             </dl>
             <div class="lab-control">
-              <p id="styleTarget" class="style-target">
-                이 문장의 스타일을 바꿔보세요!
-              </p>
+              <div class="style-game-scoreboard" aria-live="polite">
+                <span id="gameProgress">진행 0 / 4</span>
+                <span id="gameTimer">시간 0.0초</span>
+                <strong id="gameStatus">게임 시작을 눌러주세요.</strong>
+              </div>
+              <div class="style-battle" aria-label="DOM 스타일 매칭 게임">
+                <section class="style-stage">
+                  <h3>내 화면</h3>
+                  <div class="style-screen">
+                    <p id="playerTarget" class="style-target">
+                      웹 개발자 윤정훈
+                    </p>
+                  </div>
+                </section>
+                <section class="style-stage example-stage">
+                  <h3>정답 화면</h3>
+                  <div class="style-screen">
+                    <p id="exampleTarget" class="style-target">
+                      웹 개발자 윤정훈
+                    </p>
+                  </div>
+                </section>
+              </div>
               <div class="button-row">
                 <button id="changeColorBtn" class="btn ghost" type="button">
                   글자색 변경
@@ -139,6 +163,112 @@
                   숨기기/보이기
                 </button>
               </div>
+              <div class="button-row">
+                <button id="startStyleGameBtn" class="btn primary" type="button">
+                  게임 시작
+                </button>
+                <button id="resetPlayerBtn" class="btn ghost" type="button">
+                  내 화면 초기화
+                </button>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="story-step lab-step">
+          <span class="story-node"></span>
+          <div class="story-copy lab-copy">
+            <p class="story-label">Stage 04</p>
+            <h2>피자 주문 미션</h2>
+            <p>
+              메뉴 선택과 수량 변경 이벤트를 사용해 주문 금액을 실시간으로
+              계산합니다.
+            </p>
+            <dl class="lab-meta">
+              <div>
+                <dt>Rule</dt>
+                <dd>메뉴를 하나 이상 선택하고 배달 주소를 입력합니다.</dd>
+              </div>
+              <div>
+                <dt>Code</dt>
+                <dd>change event, submit event, checkbox, number input 사용</dd>
+              </div>
+            </dl>
+            <form id="pizzaOrderForm" class="lab-control pizza-order">
+              <div class="pizza-menu">
+                <label class="pizza-item">
+                  <input class="menu-check" type="checkbox" value="15000" />
+                  <span>콤비네이션 피자 <b>15,000원</b></span>
+                  <input class="menu-qty" type="number" value="1" min="1" />
+                </label>
+                <label class="pizza-item">
+                  <input class="menu-check" type="checkbox" value="12000" />
+                  <span>페퍼로니 피자 <b>12,000원</b></span>
+                  <input class="menu-qty" type="number" value="1" min="1" />
+                </label>
+                <label class="pizza-item">
+                  <input class="menu-check" type="checkbox" value="2000" />
+                  <span>치즈 토핑 추가 <b>2,000원</b></span>
+                  <input class="menu-qty" type="number" value="1" min="1" />
+                </label>
+                <label class="pizza-item">
+                  <input class="menu-check" type="checkbox" value="1500" />
+                  <span>콜라 1.25L <b>1,500원</b></span>
+                  <input class="menu-qty" type="number" value="1" min="1" />
+                </label>
+              </div>
+              <label for="pizzaAddress">배달 주소</label>
+              <input id="pizzaAddress" type="text" placeholder="주소를 입력하세요" />
+              <div class="pizza-total">
+                주문 합계 <strong id="pizzaTotal">0원</strong>
+              </div>
+              <div class="button-row">
+                <button class="btn primary" type="submit">주문하기</button>
+                <button id="pizzaResetBtn" class="btn ghost" type="reset">
+                  초기화
+                </button>
+              </div>
+              <div id="pizzaResult" class="result-box">
+                메뉴를 골라 주문 미션을 시작하세요.
+              </div>
+            </form>
+          </div>
+        </li>
+
+        <li class="story-step lab-step">
+          <span class="story-node"></span>
+          <div class="story-copy lab-copy">
+            <p class="story-label">Stage 05</p>
+            <h2>키보드 자동차</h2>
+            <p>
+              게임판을 클릭한 뒤 방향키를 눌러 자동차를 움직이고 좌표 변화를
+              확인합니다.
+            </p>
+            <dl class="lab-meta">
+              <div>
+                <dt>Rule</dt>
+                <dd>방향키로 자동차를 게임판 안에서 자유롭게 운전합니다.</dd>
+              </div>
+              <div>
+                <dt>Code</dt>
+                <dd>keydown event, style left, style top 사용</dd>
+              </div>
+            </dl>
+            <div class="lab-control car-game">
+              <div
+                id="carTrack"
+                class="car-track"
+                tabindex="0"
+                aria-label="방향키로 움직이는 자동차 게임판"
+              >
+                <div id="arcadeCar" class="arcade-car">CAR</div>
+              </div>
+              <div id="carInfo" class="result-box">
+                현재 좌표 (x, y) = (20, 20)
+              </div>
+              <button id="carResetBtn" class="btn ghost" type="button">
+                출발점으로 이동
+              </button>
             </div>
           </div>
         </li>

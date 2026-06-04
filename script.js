@@ -172,6 +172,12 @@ let dodgeStartedAt = 0;
 let dodgeLoop = null;
 let dodgeSpawnLoop = null;
 let dodgeActive = false;
+const explosionImages = [
+  "assets/shmup/explosion-1.png",
+  "assets/shmup/explosion-3.png",
+  "assets/shmup/explosion-5.png",
+  "assets/shmup/explosion-7.png",
+];
 
 function initializeJourneyScroll() {
   const journey = document.querySelector(".journey, .story-page");
@@ -424,9 +430,9 @@ function updateDodgeDrive() {
 
   dodgeBullets.forEach((bullet) => {
     bullet.x -= bullet.speed;
-    if (bullet.x < -30) {
+    if (bullet.x < -60) {
       bullet.x = track.clientWidth + Math.random() * 120;
-      bullet.y = Math.random() * Math.max(track.clientHeight - 24, 1);
+      bullet.y = Math.random() * Math.max(track.clientHeight - 52, 1);
       bullet.speed += 0.3;
     }
     bullet.element.style.left = `${bullet.x}px`;
@@ -443,7 +449,7 @@ function spawnBullet() {
   if (!track) return;
 
   const bullet = document.createElement("div");
-  const y = Math.random() * Math.max(track.clientHeight - 24, 1);
+  const y = Math.random() * Math.max(track.clientHeight - 52, 1);
   const item = {
     element: bullet,
     x: track.clientWidth + Math.random() * 80,
@@ -452,14 +458,23 @@ function spawnBullet() {
   };
 
   bullet.className = "bullet";
+  bullet.style.setProperty(
+    "--explosion-image",
+    `url("${pickExplosionImage()}")`
+  );
   bullet.style.left = `${item.x}px`;
   bullet.style.top = `${item.y}px`;
   track.appendChild(bullet);
   dodgeBullets.push(item);
 
   if (bulletCount) {
-    bulletCount.textContent = `BULLET ${dodgeBullets.length}`;
+    bulletCount.textContent = `BLAST ${dodgeBullets.length}`;
   }
+}
+
+function pickExplosionImage() {
+  const index = Math.floor(Math.random() * explosionImages.length);
+  return explosionImages[index];
 }
 
 function checkDodgeCollision() {
@@ -468,9 +483,15 @@ function checkDodgeCollision() {
   const car = document.getElementById("arcadeCar");
   if (!car) return;
 
-  const carRect = car.getBoundingClientRect();
+  const carRect = shrinkRect(car.getBoundingClientRect(), {
+    x: 18,
+    y: 22,
+  });
   const crashed = dodgeBullets.some((bullet) => {
-    const bulletRect = bullet.element.getBoundingClientRect();
+    const bulletRect = shrinkRect(bullet.element.getBoundingClientRect(), {
+      x: 10,
+      y: 10,
+    });
     return !(
       carRect.right < bulletRect.left ||
       carRect.left > bulletRect.right ||
@@ -482,6 +503,15 @@ function checkDodgeCollision() {
   if (crashed) {
     finishDodgeDrive();
   }
+}
+
+function shrinkRect(rect, padding) {
+  return {
+    left: rect.left + padding.x,
+    right: rect.right - padding.x,
+    top: rect.top + padding.y,
+    bottom: rect.bottom - padding.y,
+  };
 }
 
 function finishDodgeDrive() {
@@ -519,7 +549,7 @@ function updateDodgeHud(seconds) {
     timer.textContent = `SURVIVE ${seconds.toFixed(1)}초`;
   }
   if (bulletCount) {
-    bulletCount.textContent = `BULLET ${dodgeBullets.length}`;
+    bulletCount.textContent = `BLAST ${dodgeBullets.length}`;
   }
 }
 

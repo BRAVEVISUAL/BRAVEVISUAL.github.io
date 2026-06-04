@@ -239,36 +239,45 @@
           <span class="story-node"></span>
           <div class="story-copy lab-copy">
             <p class="story-label">Stage 05</p>
-            <h2>키보드 자동차</h2>
+            <h2>탄막 피하기 드라이브</h2>
             <p>
-              게임판을 클릭한 뒤 방향키를 눌러 자동차를 움직이고 좌표 변화를
-              확인합니다.
+              방향키로 자동차를 움직이며 오른쪽에서 날아오는 탄막을 피하고,
+              몇 초 동안 살아남는지 기록합니다.
             </p>
             <dl class="lab-meta">
               <div>
                 <dt>Rule</dt>
-                <dd>방향키로 자동차를 게임판 안에서 자유롭게 운전합니다.</dd>
+                <dd>탄막에 닿지 않고 오래 버틸수록 기록이 올라갑니다.</dd>
               </div>
               <div>
                 <dt>Code</dt>
-                <dd>keydown event, style left, style top 사용</dd>
+                <dd>keydown event, setInterval, Math.random, collision check 사용</dd>
               </div>
             </dl>
             <div class="lab-control car-game">
+              <div class="car-hud">
+                <span id="carTimer">SURVIVE 0.0초</span>
+                <span id="carBulletCount">BULLET 0</span>
+              </div>
               <div
                 id="carTrack"
                 class="car-track"
                 tabindex="0"
-                aria-label="방향키로 움직이는 자동차 게임판"
+                aria-label="탄막을 피하는 자동차 게임판"
               >
                 <div id="arcadeCar" class="arcade-car">CAR</div>
               </div>
               <div id="carInfo" class="result-box">
-                현재 좌표 (x, y) = (20, 20)
+                게임 시작을 누르고 방향키로 탄막을 피하세요.
               </div>
-              <button id="carResetBtn" class="btn ghost" type="button">
-                출발점으로 이동
-              </button>
+              <div class="button-row">
+                <button id="carStartBtn" class="btn primary" type="button">
+                  게임 시작
+                </button>
+                <button id="carResetBtn" class="btn ghost" type="button">
+                  다시 준비
+                </button>
+              </div>
             </div>
           </div>
         </li>

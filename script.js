@@ -80,9 +80,14 @@ document.addEventListener("DOMContentLoaded", function () {
     carTrack.addEventListener("keydown", moveArcadeCar);
   }
 
+  const carStartBtn = document.getElementById("carStartBtn");
+  if (carStartBtn) {
+    carStartBtn.addEventListener("click", startDodgeDrive);
+  }
+
   const carResetBtn = document.getElementById("carResetBtn");
   if (carResetBtn) {
-    carResetBtn.addEventListener("click", resetArcadeCar);
+    carResetBtn.addEventListener("click", prepareDodgeDrive);
   }
 
   const contactForm = document.getElementById("contactForm");
@@ -162,6 +167,11 @@ let quizTryCount = 0;
 let arcadeCarX = 20;
 let arcadeCarY = 20;
 const arcadeCarStep = 10;
+let dodgeBullets = [];
+let dodgeStartedAt = 0;
+let dodgeLoop = null;
+let dodgeSpawnLoop = null;
+let dodgeActive = false;
 
 function initializeJourneyScroll() {
   const journey = document.querySelector(".journey, .story-page");
@@ -362,27 +372,163 @@ function moveArcadeCar(event) {
   arcadeCarX = Math.min(Math.max(arcadeCarX, 0), maxX);
   arcadeCarY = Math.min(Math.max(arcadeCarY, 0), maxY);
   updateArcadeCarPosition();
+  checkDodgeCollision();
 }
 
-function resetArcadeCar() {
+function prepareDodgeDrive() {
+  stopDodgeLoops();
+  clearBullets();
   arcadeCarX = 20;
   arcadeCarY = 20;
+  dodgeBullets = [];
+  dodgeActive = false;
   updateArcadeCarPosition();
+  updateDodgeHud(0);
 
   const track = document.getElementById("carTrack");
+  const info = document.getElementById("carInfo");
+  if (info) {
+    info.textContent = "게임 시작을 누르고 방향키로 탄막을 피하세요.";
+    info.classList.remove("is-perfect", "is-miss");
+  }
   if (track) {
     track.focus();
   }
 }
 
+function startDodgeDrive() {
+  prepareDodgeDrive();
+  dodgeActive = true;
+  dodgeStartedAt = Date.now();
+  spawnBullet();
+  spawnBullet();
+
+  dodgeLoop = setInterval(updateDodgeDrive, 40);
+  dodgeSpawnLoop = setInterval(spawnBullet, 3000);
+
+  const info = document.getElementById("carInfo");
+  const track = document.getElementById("carTrack");
+  if (info) {
+    info.textContent = "탄막이 날아옵니다. 방향키로 피하세요.";
+  }
+  if (track) {
+    track.focus();
+  }
+}
+
+function updateDodgeDrive() {
+  if (!dodgeActive) return;
+
+  const track = document.getElementById("carTrack");
+  if (!track) return;
+
+  dodgeBullets.forEach((bullet) => {
+    bullet.x -= bullet.speed;
+    if (bullet.x < -30) {
+      bullet.x = track.clientWidth + Math.random() * 120;
+      bullet.y = Math.random() * Math.max(track.clientHeight - 24, 1);
+      bullet.speed += 0.3;
+    }
+    bullet.element.style.left = `${bullet.x}px`;
+    bullet.element.style.top = `${bullet.y}px`;
+  });
+
+  updateDodgeHud((Date.now() - dodgeStartedAt) / 1000);
+  checkDodgeCollision();
+}
+
+function spawnBullet() {
+  const track = document.getElementById("carTrack");
+  const bulletCount = document.getElementById("carBulletCount");
+  if (!track) return;
+
+  const bullet = document.createElement("div");
+  const y = Math.random() * Math.max(track.clientHeight - 24, 1);
+  const item = {
+    element: bullet,
+    x: track.clientWidth + Math.random() * 80,
+    y,
+    speed: 3 + Math.random() * 2 + dodgeBullets.length * 0.2,
+  };
+
+  bullet.className = "bullet";
+  bullet.style.left = `${item.x}px`;
+  bullet.style.top = `${item.y}px`;
+  track.appendChild(bullet);
+  dodgeBullets.push(item);
+
+  if (bulletCount) {
+    bulletCount.textContent = `BULLET ${dodgeBullets.length}`;
+  }
+}
+
+function checkDodgeCollision() {
+  if (!dodgeActive) return;
+
+  const car = document.getElementById("arcadeCar");
+  if (!car) return;
+
+  const carRect = car.getBoundingClientRect();
+  const crashed = dodgeBullets.some((bullet) => {
+    const bulletRect = bullet.element.getBoundingClientRect();
+    return !(
+      carRect.right < bulletRect.left ||
+      carRect.left > bulletRect.right ||
+      carRect.bottom < bulletRect.top ||
+      carRect.top > bulletRect.bottom
+    );
+  });
+
+  if (crashed) {
+    finishDodgeDrive();
+  }
+}
+
+function finishDodgeDrive() {
+  if (!dodgeActive) return;
+
+  dodgeActive = false;
+  stopDodgeLoops();
+
+  const seconds = ((Date.now() - dodgeStartedAt) / 1000).toFixed(1);
+  const info = document.getElementById("carInfo");
+  if (info) {
+    info.textContent = `GAME OVER! 생존 시간 ${seconds}초`;
+    info.classList.remove("is-perfect");
+    info.classList.add("is-miss");
+  }
+}
+
+function stopDodgeLoops() {
+  clearInterval(dodgeLoop);
+  clearInterval(dodgeSpawnLoop);
+  dodgeLoop = null;
+  dodgeSpawnLoop = null;
+}
+
+function clearBullets() {
+  dodgeBullets.forEach((bullet) => {
+    bullet.element.remove();
+  });
+}
+
+function updateDodgeHud(seconds) {
+  const timer = document.getElementById("carTimer");
+  const bulletCount = document.getElementById("carBulletCount");
+  if (timer) {
+    timer.textContent = `SURVIVE ${seconds.toFixed(1)}초`;
+  }
+  if (bulletCount) {
+    bulletCount.textContent = `BULLET ${dodgeBullets.length}`;
+  }
+}
+
 function updateArcadeCarPosition() {
   const car = document.getElementById("arcadeCar");
-  const info = document.getElementById("carInfo");
-  if (!car || !info) return;
+  if (!car) return;
 
   car.style.left = `${arcadeCarX}px`;
   car.style.top = `${arcadeCarY}px`;
-  info.textContent = `현재 좌표 (x, y) = (${arcadeCarX}, ${arcadeCarY})`;
 }
 
 function calculateDday() {

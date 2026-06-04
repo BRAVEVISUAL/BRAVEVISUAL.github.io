@@ -463,6 +463,25 @@
   color: #fbbf24;
 }
 
+.car-hud {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.car-hud span {
+  min-height: 42px;
+  padding: 10px 12px;
+  border: 1px solid rgba(45, 212, 191, 0.24);
+  border-radius: 6px;
+  background: #0f172a;
+  color: #f8fafc;
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  font-weight: 800;
+  text-align: center;
+}
+
 .car-track {
   position: relative;
   height: 260px;
@@ -501,6 +520,16 @@
   transition: left 80ms linear, top 80ms linear;
 }
 
+.bullet {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #fbbf24;
+  border-radius: 50%;
+  background: #f97316;
+  box-shadow: 0 0 16px rgba(249, 115, 22, 0.48);
+}
+
 @media (max-width: 760px) {
   .lab-story .story-track {
     top: 370px;
@@ -514,7 +543,8 @@
   .style-game-scoreboard,
   .style-battle,
   .quiz-scoreboard,
-  .quiz-options {
+  .quiz-options,
+  .car-hud {
     grid-template-columns: 1fr;
   }
 
